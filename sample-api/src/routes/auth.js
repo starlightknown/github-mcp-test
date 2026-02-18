@@ -15,12 +15,6 @@ router.post('/login', async (req, res) => {
     // FLAW: SQL injection vulnerability
     const query = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`;
     
-    // FLAW: No error handling
-    const result = db.query(query);
-    
-    // FLAW: Inconsistent variable naming
-    const UserData = result.rows[0];
-    
     if (UserData) {
         // FLAW: Exposing sensitive data
         res.json({ 
